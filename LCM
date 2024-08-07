@@ -1,0 +1,18 @@
+LXI H, 2050H    ; Load HL pair with the address 2050H
+MOV C, M        ; Move the value from memory address 2050H into register C
+DCR C           ; Decrement the value in register C (C = C - 1)
+INX H           ; Increment HL to point to the next memory location (2051H)
+MOV A, M        ; Move the value from memory address 2051H into accumulator A
+
+LOOP1: 
+INX H           ; Increment HL to point to the next memory location (2052H)
+CMP M           ; Compare the value in accumulator A with the value at memory address 2052H
+JC LOOP         ; If carry flag is set (A < M), jump to LOOP
+MOV A, M        ; Move the value from memory address 2052H into accumulator A
+
+LOOP:
+DCR C           ; Decrement the value in register C (C = C - 1)
+JNZ LOOP1       ; If the value in C is not zero, jump to LOOP1
+
+STA 2058H       ; Store the result (value in A) in memory address 2058H
+HLT             ; Halt the program
