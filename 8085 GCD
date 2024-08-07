@@ -1,0 +1,18 @@
+LXI H, 8000H    ; Load HL pair with the address 8000H
+MOV A, M        ; Load the value from memory address 8000H into A
+INX H           ; Increment HL to point to the next memory location (8001H)
+MOV B, M        ; Move the value from memory address 8001H into B
+
+LOOP: CMP B     ; Compare the accumulator with the value in register B
+JZ STORE        ; If zero flag is set (A == B), jump to STORE
+JC EXG          ; If carry flag is set (A < B), jump to EXG
+SUB B           ; Subtract the value in register B from the accumulator
+JMP LOOP        ; Jump back to LOOP
+
+EXG: MOV C, B   ; Move the value in register B to register C
+MOV B, A        ; Move the value in accumulator A to register B
+MOV A, C        ; Move the value in register C to accumulator A
+JMP LOOP        ; Jump back to LOOP
+
+STORE: STA 8002H ; Store the result in memory address 8002H
+HLT             ; Halt the program
