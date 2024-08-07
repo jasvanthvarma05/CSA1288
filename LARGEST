@@ -1,0 +1,16 @@
+
+LDA 8500H        
+MOV B, A         
+
+LDA 8501H      
+CMP B        
+JZ STORE_A       
+JC STORE_B       
+
+MOV A, B         
+JMP STORE_A      
+
+STORE_B: MOV A, B        
+STORE_A: STA 8502H        
+
+END
