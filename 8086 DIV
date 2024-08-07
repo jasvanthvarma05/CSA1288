@@ -1,0 +1,21 @@
+ORG 100H
+
+MOV AX, 1234H
+MOV BX, 5678H
+DIV BX
+
+MOV [Quotient], AL
+MOV [Remainder], AH
+
+MOV AH, 4CH
+INT 21H
+
+END
+
+ORG 200H
+Quotient DB ?
+Remainder DB ?
+
+
+
+
