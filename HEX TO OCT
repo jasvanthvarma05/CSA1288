@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+void decimalToOctal(int decimal) {
+    int octal[32]; // Array to store octal digits
+    int index = 0;
+
+    // Handle the case where the number is zero
+    if (decimal == 0) {
+        printf("0");
+        return;
+    }
+
+    // Convert decimal to octal
+    while (decimal > 0) {
+        octal[index++] = decimal % 8;
+        decimal /= 8;
+    }
+
+    // Print octal number in reverse order
+    for (int i = index - 1; i >= 0; i--) {
+        printf("%d", octal[i]);
+    }
+}
+
+int main() {
+    unsigned int hex; // Use unsigned int for hexadecimal input
+
+    // Read the hexadecimal value
+    printf("Enter the hexadecimal value (e.g., 1A3F): ");
+    scanf("%x", &hex); // %x for hexadecimal input
+
+    // Convert hexadecimal to decimal
+    int decimal = hex;
+
+    // Print the octal equivalent
+    printf("The octal equivalent is: ");
+    decimalToOctal(decimal);
+    printf("\n");
+
+    return 0;
+}
