@@ -1,19 +1,19 @@
-LDA 8000     ; Load the value from memory address 8000 into accumulator A
-MOV B, A     ; Move the value from accumulator A to register B
-LDA 8001     ; Load the value from memory address 8001 into accumulator A
-MOV C, A     ; Move the value from accumulator A to register C
-CPI 00       ; Compare the accumulator with 00
-JZ ZERO      ; If the multiplier is zero, jump to ZERO
+LDA 8000     
+MOV B, A     
+LDA 8001     
+MOV C, A     
+CPI 00       
+JZ ZERO      
 
-XRA A        ; Clear the accumulator (A = 0)
-LOOP1: ADD B ; Add the value in register B to the accumulator A
-DCR C        ; Decrement the value in register C
-JNZ LOOP1    ; If C is not zero, jump back to LOOP1
+XRA A        
+LOOP1: ADD B 
+DCR C        
+JNZ LOOP1    
 
-STA 8002     ; Store the result in memory address 8002
-JMP END      ; Jump to END to halt the program
+STA 8002     
+JMP END      
 
-ZERO: XRA A  ; Clear the accumulator (A = 0)
-STA 8002     ; Store 0 in memory address 8002 if multiplier is 0
+ZERO: XRA A  
+STA 8002     
 
-END: HLT     ; Halt the program
+END: HLT     
