@@ -1,20 +1,20 @@
-LDA 8501     ; Load the divisor (from memory address 8501) into accumulator A
-MOV B, A     ; Move the divisor to register B
-LDA 8500     ; Load the dividend (from memory address 8500) into accumulator A
-MVI C, 00    ; Initialize register C to 0 (to store quotient)
+LDA 8501     
+MOV B, A     
+LDA 8500     
+MVI C, 00    
 
 LOOP:
-CMP B        ; Compare the dividend (A) with the divisor (B)
-JC DIV_DONE  ; If the dividend is less than the divisor, jump to DIV_DONE
+CMP B        
+JC DIV_DONE  
 
-SUB B        ; Subtract the divisor from the dividend
-INR C        ; Increment the quotient by 1
-MOV A, B     ; Update the dividend with the result of subtraction
-JMP LOOP     ; Repeat the loop
+SUB B        
+INR C        
+MOV A, B     
+JMP LOOP     
 
 DIV_DONE:
-STA 8503     ; Store the final value of the dividend (remainder) at memory address 8503
-DCR C        ; Decrement the quotient by 1 (adjust for the last increment)
-MOV A, C     ; Move the quotient to accumulator A
-STA 8502     ; Store the quotient in memory address 8502
-RST 1        ; Restart and execute from address 0008H
+STA 8503     
+DCR C        
+MOV A, C     
+STA 8502     
+RST 1        
